@@ -10,6 +10,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 import configuration from './config/configuration';
 import { HealthModule } from './config/health/health.module';
 import { LoggerMiddleware } from './config/logger/logger.middleware';
+import { ServerModule } from './service/server.module';
 
 @UseInterceptors()
 @Module({
@@ -23,6 +24,7 @@ import { LoggerMiddleware } from './config/logger/logger.middleware';
     }),
     HttpModule,
     HealthModule,
+    ServerModule,
   ],
   controllers: [],
   providers: [
