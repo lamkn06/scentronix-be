@@ -65,6 +65,12 @@ Document endpoint: http://localhost:<PORT>/v3
 $ npm run start:prod
 ```
 
+## Swagger
+
+```
+http://localhost:8080/v1
+```
+
 ## Generate file
 
 ```bash
