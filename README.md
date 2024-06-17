@@ -59,7 +59,7 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-Document endpoint: http://localhost:<PORT>/v3
+Document endpoint: http://localhost:<PORT>/v1
 
 # production mode
 $ npm run start:prod
