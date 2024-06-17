@@ -24,19 +24,8 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript 
+[Nest](https://github.com/nestjs/nest) framework TypeScript
 starter repository.
-
-## Goal
-
-- [x] Swagger
-- [x] Eslint
-- [x] commit lint
-- [x] Husky
-- [x] S3
-- [x] SQS
-- [ ] Login Auth
-- [ ] Consumer
 
 ## Setup
 
@@ -46,25 +35,13 @@ $ nvm install node@16
 
 Or just follow https://nodejs.org/en/
 
-Note: Nodejs version 16.x.x
+Note: Nodejs version 18.x.x
 ```
 
 ## Installation
 
 ```bash
 $ npm install
-```
-
-## Consumer
-```ts
-
-@Injectable()
-export class AppMessageHandler implements MessageHandler {
-  @SqsMessageHandler(/** name: */ 'queueName', /** batch: */ false)
-  public async handleMessage(message: AWS.SQS.Message) {
-  }
-}
-
 ```
 
 ## [Environment](./.env.sample)
@@ -75,11 +52,6 @@ export class AppMessageHandler implements MessageHandler {
 # If you are on the first run (optional) => Database
 $ npx prisma generate
 
-# Redis => First install
-$ docker run --name local-redis -d -p 6379:6379 redis
-
-# Redis => start
-$ docker start [container-image]
 
 # development
 $ npm run start
@@ -93,11 +65,10 @@ Document endpoint: http://localhost:<PORT>/v3
 $ npm run start:prod
 ```
 
-
-## Generate file 
+## Generate file
 
 ```bash
-# Generate file 
+# Generate file
 $ nest g [type] [name]
 ```
 
@@ -113,7 +84,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
 
 ## Folders
 
@@ -198,4 +168,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-

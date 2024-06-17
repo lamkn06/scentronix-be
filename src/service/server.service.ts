@@ -1,6 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import axios from 'axios';
 
+import { Server } from './interfaces/server.interface';
 import { ServerRepository } from './server.repository';
 
 @Injectable()
@@ -9,16 +10,29 @@ export class ServerService {
 
   constructor(private readonly serverRepository: ServerRepository) {}
 
-  async findServer() {
+  async findServer(): Promise<Server[]> {
     try {
-      const servers = await this.serverRepository.find();
-      for (const server of servers) {
-        if (await this.checkServerAvailability(server.url)) {
-          return server;
-        }
+      const servers = [];
+      const response = await this.serverRepository.find();
+
+      for (const server of response) {
+        servers.push({
+          url: server.url,
+          priority: server.priority,
+          online: await this.checkServerAvailability(server.url),
+        });
       }
 
-      throw new NotFoundException('No online servers found.');
+      if (servers.length === 0) {
+        throw new NotFoundException('No online servers found.');
+      }
+
+      const offlineServers = servers.filter((server) => !server.online);
+      if (offlineServers.length === servers.length) {
+        throw new NotFoundException('No online servers found.');
+      }
+
+      return servers.sort((a, b) => a.priority - b.priority);
     } catch (error) {
       throw new NotFoundException('No online servers found.');
     }

@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
+import { Server } from './interfaces/server.interface';
+
 @Injectable()
 export class ServerRepository {
-  async find(): Promise<{ url: string; priority: number }[]> {
-    const list = [
+  async find(): Promise<Server[]> {
+    return [
       {
         url: 'https://does-not-work.perfume.new',
         priority: 1,
@@ -21,7 +23,5 @@ export class ServerRepository {
         priority: 2,
       },
     ];
-
-    return list.sort((a, b) => a.priority - b.priority);
   }
 }
